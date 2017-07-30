@@ -271,7 +271,7 @@ FirebaseAuth.prototype._createUser = function (method, credentials, onComplete) 
           updateProfile: function() {
             return ;
           },
-          sendEmailVerification: function (callbackFn) {
+          sendEmailVerification: function () {
            return ;
           }
         };
