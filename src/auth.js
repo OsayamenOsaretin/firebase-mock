@@ -267,7 +267,13 @@ FirebaseAuth.prototype._createUser = function (method, credentials, onComplete) 
         };
         user = {
           uid: users[key].uid,
-          email: key
+          email: key,
+          updateProfile: function() {
+            return ;
+          },
+          sendEmailVerification: function(callbackFn) {
+            return callbackFn();
+          }
         };
         if (onComplete) {
           onComplete(err, user);
