@@ -272,10 +272,7 @@ FirebaseAuth.prototype._createUser = function (method, credentials, onComplete) 
             return ;
           },
           sendEmailVerification: function (callbackFn) {
-            return new Promise(function (resolve, reject) {
-              callbackFn();
-              resolve();
-            })
+           return ;
           }
         };
         if (onComplete) {
