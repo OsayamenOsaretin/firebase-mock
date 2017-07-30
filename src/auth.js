@@ -1,5 +1,6 @@
 'use strict';
 
+
 var _      = require('lodash');
 var format = require('util').format;
 var Promise   = require('rsvp').Promise;
@@ -256,7 +257,13 @@ FirebaseAuth.prototype._createUser = function (method, credentials, onComplete) 
         users[key] = {
           uid: credentials.uid || self._nextUid(),
           email: key,
-          password: credentials.password
+          password: credentials.password,
+          updateProfile: function() {
+            return ;
+          },
+          sendEmailVerification: function(callbackFn) {
+            return callbackFn();
+          }
         };
         user = {
           uid: users[key].uid,
