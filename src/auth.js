@@ -365,7 +365,7 @@ FirebaseAuth.prototype.resetPassword = function (credentials, onComplete) {
   });
 };
 
-FirebaseAuth.prototype.sendPasswordRestEmail = function (email) {
+FirebaseAuth.prototype.sendPasswordResetEmail = function (email) {
   return Promise.resolve();
 } 
 
