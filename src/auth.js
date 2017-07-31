@@ -367,10 +367,16 @@ FirebaseAuth.prototype.resetPassword = function (credentials, onComplete) {
 
 FirebaseAuth.prototype.sendPasswordResetEmail = function (email, onComplete) {
   var err = this._nextErr('sendPasswordResetEmail');
-  this._defer('sendPasswordResetEmail', _.toArray(arguments), function() {
-    err = err;
-    onComplete(err);
-  });
+  var self = this;
+  return new Promise(function (resolve, reject) {
+    self._defer('sendPasswordResetEmail', _.toArray(arguments), function () {
+      if (err) {
+        reject()
+      } else {
+        resolve()
+      }
+    });
+  })
 };
 
 FirebaseAuth.prototype._nextUid = function () {
