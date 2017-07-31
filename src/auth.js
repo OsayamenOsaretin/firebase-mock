@@ -371,9 +371,9 @@ FirebaseAuth.prototype.sendPasswordResetEmail = function (email, onComplete) {
   return new Promise(function (resolve, reject) {
     self._defer('sendPasswordResetEmail', _.toArray(arguments), function () {
       if (err) {
-        reject()
+        reject(err);
       } else {
-        resolve()
+        resolve();
       }
     });
   })
