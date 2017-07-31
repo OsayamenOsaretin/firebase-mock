@@ -365,6 +365,10 @@ FirebaseAuth.prototype.resetPassword = function (credentials, onComplete) {
   });
 };
 
+FirebaseAuth.prototype.sendPasswordRestEmail = function (email) {
+  return Promise.resolve();
+} 
+
 FirebaseAuth.prototype._nextUid = function () {
   return 'simplelogin:' + (this._auth.uidCounter++);
 };
