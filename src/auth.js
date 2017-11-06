@@ -135,7 +135,8 @@ Object.keys(signinMethods)
         self._authEvent(method, function(err) {
           if (err) reject(err);
           self.currentUser = user;
-          resolve(user);
+          const resolution = method ==== 'signInWithPopup' ? { user } : user;
+          resolve(resolution);
           self._triggerAuthEvent();
         }, true);
       });
