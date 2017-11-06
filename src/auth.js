@@ -1,5 +1,6 @@
 'use strict';
 
+
 var _      = require('lodash');
 var format = require('util').format;
 var Promise   = require('rsvp').Promise;
@@ -257,11 +258,23 @@ FirebaseAuth.prototype._createUser = function (method, credentials, onComplete) 
         users[key] = {
           uid: credentials.uid || self._nextUid(),
           email: key,
-          password: credentials.password
+          password: credentials.password,
+          updateProfile: function() {
+            return ;
+          },
+          sendEmailVerification: function(callbackFn) {
+            return callbackFn();
+          }
         };
         user = {
           uid: users[key].uid,
-          email: key
+          email: key,
+          updateProfile: function() {
+            return ;
+          },
+          sendEmailVerification: function () {
+           return Promise.resolve();
+          }
         };
         if (onComplete) {
           onComplete(err, user);
@@ -351,6 +364,20 @@ FirebaseAuth.prototype.resetPassword = function (credentials, onComplete) {
       this._validateExistingEmail(credentials);
     onComplete(err);
   });
+};
+
+FirebaseAuth.prototype.sendPasswordResetEmail = function (email, onComplete) {
+  var err = this._nextErr('sendPasswordResetEmail');
+  var self = this;
+  return new Promise(function (resolve, reject) {
+    self._defer('sendPasswordResetEmail', _.toArray(arguments), function () {
+      if (err) {
+        reject(err);
+      } else {
+        resolve();
+      }
+    });
+  })
 };
 
 FirebaseAuth.prototype._nextUid = function () {
